@@ -4,6 +4,7 @@ pragma solidity >=0.5.0 <0.6.0;
 
 import "../02-CryptoZombies/zombieAttack.sol";
 import "./erc721.sol";
+import "./safeMath.sol";
 
 contract ZombieOwnership is ZombieAttack, ERC721 {
 
@@ -31,5 +32,6 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
 
     function approve(address _approved, uint256 _tokenId) external payable onlyOwnerOf(_tokenId) {
         zombieApprovals[_tokenId] = _approved;
+        emit Approval(msg.sender, _approved, _tokenId);
     }
 }
